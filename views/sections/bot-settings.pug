@@ -1,0 +1,143 @@
+include ../mixins/checkbox
+include ../mixins/input-field
+include ../mixins/info
+include ../mixins/loading-circle
+
+h1 Customizing the bot
+
+p In this section, you'll need to configure different settings about the bot.
+
+h4 Name settings
+
++info("name") Your bot name. Typically, this is your bot's username without the discriminator. i.e: if your bot's username is MemeBot#0420, then this option would be MemeBot.
+
++input-field("settings-name", "text", "name")
+
++info("prefix") The bot's command prefix. The bot will recognize as command any message that begins with it. i.e: if the prefix is #[i !schedulebot], "!schedulebot foo" will trigger the command "foo", whereas "ScheduleBot foo" will do nothing at all. This can be a mention to the bot user, if it's in the form of <@YOUR_BOT_USER_ID>
+
++info("readable_prefix") This is a readable version of the prefix. Generally, this is the same as prefix, but if you set prefix to be in the form of <@YOUR_BOT_USER_ID>, you'd need to set readable_prefix to be "@ScheduleBot" (or however your bot user is named).
+
+	p This is because when you use the characters `` in Discord (to highlight a command, in ScheduleBot's case), the string <@YOUR_BOT_USER_ID> doesn't get parsed as a mention. So in order not to mislead the user, we have a separate option for a readable version of our prefix.
+
+div(class="row")
+	div(class="col s12 m6 l6 input-field")
+		+input-field("settings-prefix", "text", "prefix")
+	div(class="col s12 m6 l6 input-field")
+		+input-field("settings-readable-prefix", "text", "readable_prefix")
+
++info("admin_app_prefix") The prefix for the admin app. This is the similar to prefix, except it's used to run admin commands, and therefore cannot be the same as prefix.
+
++input-field("settings-admin-app-prefix", "text", "admin_app_prefix")
+
+h4 Discord settings
+
++info("master_channel") The bot will read the user input and announce the events to this channel. It won't listen to any other channels.
+
+div(class="input-field"): div(class="row")
+
+	div(class="col s12 m9 l9")
+		label(for="input-settings-master-channel") master_channel
+		input(id="input-settings-master-channel" type="text" class="invalid")
+	div(class="col s12 m3 l3 center")
+		div(id="button-settings-master-channel"
+		class="btn red waves-effect waves-light") Select
+		+loading-circle("loading-settings-master-channel", "red", true)
+
+div(id="panel-settings-master-channel" class="card-panel card-panel-small row")
+	p(id="settings-master-channel")
+		| No master channel selected.
+		br
+		| Press select to validate the master channel.
+
++checkbox("settings-delete-after-reply", true, "delete_after_reply") If this option is enabled, the bot will delete the message that triggered it, and its own response, after the specified amount of time (#[b delete_after_reply_time]) has passed. Enable this if you don't want your channel to be flooded with bot messages.
+
+	p #[b ATTENTION! In order for this to work, you need to give your bot the following permission]:#[br]MANAGE_MESSAGES - 0x00002000#[br]#[a(href="https://discordapp.com/developers/docs/topics/permissions" target="_blank") Click here for more information].
+
+div(id="div-settings-delete-after-reply" class="card-panel")
+	+info("delete_after_reply_time") The amount of time, in seconds, that needs to pass before the bot deletes the message that triggered it and its own response.
+
+	+input-field("settings-delete-after-reply-time", "number", "delete_after_reply_time")
+
++checkbox("settings-disallow-talking", true, "disallow_talking") If true, it will delete any message that is not a command from the master channel. Leave this on to keep your master channel tidy. #[b This also requires the "manage messages" permission].
+
+h4 Command settings
+
++checkbox("settings-add-inhouse-is-admin-command", false, "add_inhouse_is_admin_command") If false, all (non-blacklisted) users will be able to add inhouses to created events. If true, only admins will be able to do so.
+
++checkbox("settings-quick-inhouse-enabled", true, "quick_inhouse_enabled") The "quick-inhouse" command creates an instant lobby and adds an inhouse with the default values. It is the equivalent of running "@ScheduleBot create (event_name) now" and "@ScheduleBot add-inhouse (id)". If set to false, the command won't be included in the bot, and won't even show on the help.
+
+div(id="div-settings-quick-inhouse-enabled" class="card-panel")
+	+info("quick_inhouse_command_name") The command name. If you changed this to "qh", the command would be executed as @ScheduleBot qh
+	+input-field("settings-quick-inhouse-command-name", "text", "quick_inhouse_command_name")
+
+	+info("quick_inhouse_event_name") The created event's name, which is then used as a lobby name. (So you could customize this with your guild's name, for instance).
+	+input-field("settings-quick-inhouse-event-name", "text", "quick_inhouse_event_name")
+
++info("game_generic_name") How the bot will call games. In a competitive league, you might want to change this with "match" or "game", since it's not technically an inhouse.
+
+	p: strong CAREFUL! This will change the name of the command "add-inhouse" to "add-whatever_you_write"
+
++input-field("settings-game-generic-name", "text", "game_generic_name")
+
+h4 Time settings
+
++info("default_timezone") The time zone that will be used by the bot to schedule events.
+
+div(class="input-field")
+	input(id="input-settings-default-timezone" type="text" class="settings-input autocomplete")
+	label(for="input-settings-default-timezone") default_timezone
+	div(class="card-panel card-panel-error red darken-4"
+		style="display: none;" id="error-div-settings-default-timezone")
+			p(id="error-p-settings-default-timezone")
+
++info("time_format") The time format that will be used for the create command. The bot will read a date string and will attempt to interpret it as the passed format. If the passed time doesn't match the format, the command will result in an error.
+
+	p A list of valid format tokens can be found #[a(href="http://momentjs.com/docs/#year-month-and-day-tokens" target="_blank") here].
+
+	p: strong ATTENTION! Triple check that the date format is valid to you before submitting, as there is no way of determining whether or not a format is invalid!
+
++input-field("settings-time-format", "text", "time_format")
+
++info("update_interval") On each interval, specified in seconds, the bot will update all events' summaries (messages that contain all the information related to an event).
+
++input-field("settings-update-interval", "number", "update_interval")
+
+h4 Dota settings
+
++info("default_server") The default inhouse server, which will be used if the user doesn't pass the --server flag to the add-inhouse command.
+
+div(class="input-field")
+	select(id="settings-default-server")
+		option(value="Australia") Australia
+		option(value="Austria") Austria
+		option(value="Brazil") Brazil
+		option(value="Chile") Chile
+		option(value="Dubai") Dubai
+		option(value="India") India
+		option(value="Japan") Japan
+		option(value="Luxembourg" selected) Luxembourg
+		option(value="Peru") Peru
+		option(value="Singapore") Singapore
+		option(value="South Africa") South Africa
+		option(value="Stockholm") Stockholm
+		option(value="US East") US East
+		option(value="US West") US West
+	label default_server
+
++checkbox("settings-disable-autostart", false, "disable_autostart") If false, lobbies will be started automatically when ten people join it (spectators, casters and unassigned players not counted). If true, the games will only be able to be started with the admin command schedulebot-admin force-lobby-start (event)
+
++checkbox("settings-ticketing-enabled", false, "ticketing_enabled") If true, the bot will ticket any lobbies using the provided league id. Make sure that the steam bot is an admin of that league.
+
+div(id="div-settings-ticketing-enabled" class="card-panel" style="display: none;")
+	+input-field("settings-ticketing-league-id", "number", "ticketing_league_id")
+
++checkbox("settings-mmr-enabled", true, "mmr_enabled") If true, the bot will fetch MMR from OpenDota for every user that links their Steam account, and display it in event summaries.
+
+	p The user must have the "Expose Public Match Data" option enabled, must be displaying their MMR on their Dota profile, and must have signed in OpenDota at least once, using Steam. If OpenDota doesn't know the user MMR, ScheduleBot won't either, and will display a "MMR Unknown message".
+
+div(id="div-settings-mmr-enabled" class="card-panel")
+	+checkbox("settings-mmr-enforce", false, "mmr_enforce") If true, the bot will only allow people who have their MMR publicly exposed in OpenDota to confirm any events. This is useful for competitive leagues who need to control MMR; it's recommended to leave it false otherwise.
+
+	+info("mmr_update_interval") ScheduleBot will update all users' MMR on each interval, specified in hours. This requires a request to OpenDota for every user, on each interval, so the more users you have, the higher this should be.
+
+	+input-field("settings-mmr-update-interval", "number", "mmr_update_interval")

@@ -1,0 +1,11 @@
+{
+  "name": "schedulebot-setup",
+  "dependencies": {
+    "body-parser": "registry:npm/body-parser#1.15.2+20161116154925",
+    "express": "registry:npm/express#4.14.0+20160925001530",
+    "knex": "registry:dt/knex#0.0.0+20170202190133"
+  },
+  "globalDependencies": {
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160726072212"
+  }
+}

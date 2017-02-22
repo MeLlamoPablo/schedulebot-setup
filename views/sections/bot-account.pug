@@ -1,0 +1,25 @@
+include ../mixins/loading-circle
+
+h1 Setting up the Discord bot's account
+p Let's begin by setting up your Discord bot's account. Head over to the #[a(href="https://discordapp.com/developers/applications/me" target="_blank") Discord developer site],  and create an application if you haven't already. Go to #[i APP BOT USER] and create one if you haven't already either. Then, grab your token. #[b Make sure that #[i Require OAuth2 Code Grant] is not checked].
+p Then, insert the code here:
+
+div(class="input-field"): div(class="row")
+
+	div(class="col s12 m10 l10")
+		label(for="input-discord-token") Discord Bot User Token
+		input(id="input-discord-token" type="text")
+	div(class="col s12 m2 l2 center")
+		div(id="button-discord-token" class="btn red waves-effect waves-light") Send
+		+loading-circle("loading-discord-token", "red", true)
+
+div(id="discord-bot-user-panel" style="display: none;")
+
+	div(class="card-panel card-panel-small row")
+
+		div(class="col l3"): img(id="discord-bot-user-img" class="discord-user-img")
+		div(class="col l9")
+			h4(class="no-margin") Selected bot
+			p(id="discord-bot-user-name") Unknown
+
+	p The bot token is correct. You may now proceed to the next step.

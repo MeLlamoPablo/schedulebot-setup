@@ -1,0 +1,33 @@
+h1 Setting up the Steam accounts
+
+p Steam accounts are needed for the bot to be able to host inhouses. It will make requests to the Dota 2 Game Coordinator from those accounts.
+
+p  You only need one for the bot to work, but if you expect a high match load, you may define additional accounts so that the bot can host multiple lobbies at the same time.
+
+p Your Steam credentials will not be checked now, but at the time the bot starts up. Therefore, make sure that they are correct.
+
+ul(class="collection" id="collection-steam-bots")
+
+div(class="card-panel")
+	div(class="row")
+		div(class="col s12 m6 l6"): div(class="input-field")
+			input(id="input-steam-bot-name" type="text")
+			label(for="input-steam-bot-name") Account name
+		div(class="col s12 m6 l6"): div(class="input-field")
+			input(id="input-steam-bot-password" type="password")
+			label(for="input-steam-bot-password") Account password
+
+	div(class="row")
+		div(class="col s12 m6 l6"): p(id="steam-bot-steam-guard-enabled" class="checkbox-group")
+			input(id="input-steam-bot-steam-guard-enabled" type="checkbox" class="filled-in")
+			label(for="input-steam-bot-steam-guard-enabled") This bot uses Steam Guard
+		div(class="col s12 m6 l6" id="div-steam-bot-steam-guard-enabled" style="display: none;")
+			p If your bot has Steam Guard enabled, you need to open up a Firefox private/Chrome incognito window, and go to #[a(href="https://steamcommunity.com/login/home/" target="_blank") https://steamcommunity.com/login/home/], then log in as your bot.
+
+			p Then, go to your email and grab your Steam Guard code. After you have it, enter it here:
+
+			div(class="input-field")
+				input(id="input-steam-guard-code" type="text")
+				label(for="input-steam-guard-code") Steam Guard code
+
+	div(class="waves-effect waves-light btn red accent-2" id="add-steam-bot") Add account

@@ -1,0 +1,53 @@
+h1 {
+	font-size: 3.5rem;
+}
+
+#main-container {
+	margin-top: 1rem;
+}
+
+#button-next {
+	margin-left: 1rem;
+}
+
+.discord-user-img {
+	width: 75px;
+	height: 75px;
+}
+
+.custom-section {
+	display: none;
+}
+
+.custom-section > h1 {
+	margin-top: 0.75rem;
+}
+
+.table-of-contents {
+	margin-top: 1rem;
+}
+
+.table-of-contents > li {
+	list-style-type: none;
+}
+
+.input-field {
+	margin-top: 2rem;
+}
+
+.card-panel-small {
+	width: 40%;
+}
+
+.card-panel-error {
+	color: white;
+	padding: 2px 24px 2px 24px;
+}
+
+.no-margin {
+	margin: 0 0 0 0 !important;
+}
+
+@media only screen and (min-width: 993px) {.container} {
+	width: 80% !important;
+}

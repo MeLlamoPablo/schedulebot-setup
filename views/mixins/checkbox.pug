@@ -1,0 +1,12 @@
+mixin checkbox(id, isTrueInitially, label)
+	div(class="row")
+		div(class="col s12 m12 l5")
+			p(id=id class="checkbox-group")
+				if isTrueInitially
+					input(id="input-" + id type="checkbox"
+						class="filled-in" checked="checked")
+				else
+					input(id="input-" + id type="checkbox" class="filled-in")
+				label(for="input-" + id)=label
+		div(class="col s12 m12 l7"): p
+			block

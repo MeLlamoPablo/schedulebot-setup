@@ -1,0 +1,31 @@
+extends layouts/materialize
+include mixins/custom-section
+
+block content
+
+	ul(class="collection")
+
+		+custom-section("introduction")
+			include sections/introduction
+
+		+custom-section("bot-account")
+			include sections/bot-account
+
+		+custom-section("bot-admin")
+			include sections/bot-admin
+
+		+custom-section("bot-settings")
+			include sections/bot-settings
+
+		+custom-section("steam-accounts")
+			include sections/steam-accounts
+
+		+custom-section("finish")
+			include sections/finish
+
+	div(id="control-buttons-container" class="container center")
+		a(id="button-previous" class="waves-effect waves-light btn-large red accent-2 disabled") Previous
+		a(id="button-next" class="waves-effect waves-light btn-large red accent-2 disabled") Next
+
+	if existingData
+		span(id="existing-data" style="display: none;")!=existingData

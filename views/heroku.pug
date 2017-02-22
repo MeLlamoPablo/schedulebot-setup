@@ -1,0 +1,30 @@
+extends layouts/materialize
+include mixins/custom-section
+include mixins/loading-circle
+
+block content
+
+	ul(class="collection")
+
+		+custom-section("heroku-api-key")
+
+			h1 Setting up the Heroku API Key
+
+			p Hello! Welcome to the ScheduleBot setup page! We have detected that you're running on Heroku, but you haven't set up your API key. You only need to do this the first time you access this site.
+
+			p In order to do so, log in Heroku, and click #[a(href="https://dashboard.heroku.com/account" target="_blank") here] to go to your Heroku account management panel.
+
+			p Then, scroll down to #[b API Key], and click on #[b Reveal].
+
+			p After that, paste the API key here:
+
+				div(class="input-field")
+					input(id="input-api-key" type="text")
+					label(for="input-api-key") Heroku API Key
+
+			p By doing this, you're granting ScheduleBot permission to turn on/shut down the bot itself and this setup page.
+
+				div(class="center")
+					div(class="waves-effect waves-light btn-large red accent-4 disabled"
+						id="button-send-api-key") Send
+					+loading-circle("loading-send-api-key", "red", true)

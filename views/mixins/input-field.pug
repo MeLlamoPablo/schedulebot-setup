@@ -1,0 +1,6 @@
+mixin input-field(id, type, label)
+	div(class="input-field")
+		input(id="input-" + id type=type class="settings-input")
+		label(for="input-" + id)=label
+		div(class="card-panel card-panel-error red darken-4"
+			style="display: none;" id="error-div-" + id): p(id="error-p-" + id)
