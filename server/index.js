@@ -33,4 +33,3 @@ function run(port, data) {
     });
 }
 exports.run = run;
-run(3000);
