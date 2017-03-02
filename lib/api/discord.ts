@@ -6,12 +6,12 @@ let router = express.Router();
 /**
  * @api {post} /discord/bot/details Request details for a bot
  *
- * @apiParam {string} token The bot's user token.
+ * @apiParam {string} TOKEN The bot's user TOKEN.
  *
  * @apiSuccess {string} username The bot's username.
  * @apiSuccess {string} avatar The bot's avatar URL.
  *
- * @apiError (401) Returns 401 if the token is invalid.
+ * @apiError (401) Returns 401 if the TOKEN is invalid.
  */
 router.post("/bot/details", async (req, res, next) => {
 	try {
@@ -33,13 +33,13 @@ router.post("/bot/details", async (req, res, next) => {
 /**
  * @api {post} /discord/user/:id Request details for an user
  *
- * @apiParam {string} token The bot's user token.
+ * @apiParam {string} TOKEN The bot's user TOKEN.
  * @apiParam {string} id The user's ID
  *
  * @apiSuccess {string} username The user's username.
  * @apiSuccess {string} avatar The user's avatar URL.
  *
- * @apiError (401) Returns 401 if the token is invalid.
+ * @apiError (401) Returns 401 if the TOKEN is invalid.
  * @apiError (404) Returns 404 if the user ID is invalid.
  */
 router.post("/user/:id", async (req, res, next) => {
@@ -63,14 +63,14 @@ router.post("/user/:id", async (req, res, next) => {
 /**
  * @api {post} /discord/channel/:id
  *
- * @apiParam {string} token The bot's user token.
+ * @apiParam {string} TOKEN The bot's user TOKEN.
  * @apiParam {string} id The channel's ID
  *
  * @apiSuccess {string} name The channel's name
  * @apiSuccess {string} id The channel's ID
  * @apiSuccess {string} server The channel's server
  *
- * @apiError (401) Returns 401 if the token is invalid.
+ * @apiError (401) Returns 401 if the TOKEN is invalid.
  * @apiError (404) Returns 404 if the channel ID is invalid or inaccessible to the bot.
  */
 router.post("/channel/:id", async (req, res, next) => {

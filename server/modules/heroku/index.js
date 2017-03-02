@@ -50,7 +50,10 @@ function setApiKey(appName, key) {
                     _a.trys.push([0, 2, , 3]);
                     client = new Heroku({ token: key });
                     return [4 /*yield*/, client.patch("/apps/" + appName + "/config-vars", {
-                            body: { HEROKU_API_KEY: key }
+                            body: {
+                                HEROKU_API_KEY: key,
+                                HEROKU_APP_NAME: appName
+                            }
                         })];
                 case 1:
                     _a.sent();

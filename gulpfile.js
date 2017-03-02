@@ -53,6 +53,7 @@ gulp.task("js", () => {
 	})
 		.transform(babelify, { presets: ["es2015"] })
 		.bundle()
+		.pipe(plumber())
 		.pipe(source("bundle.js"))
 		.pipe(buffer())
 		.pipe(uglify())
