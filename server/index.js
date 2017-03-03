@@ -13,11 +13,11 @@ app.set("view engine", "pug");
 app.use(compression());
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(errorHandling_1["default"]);
+app.use(errorHandling_1.default);
 app.use("/", routes_1.routes);
 app.use("/api/v1", api_1.api);
 app.use(function (req, res, next) {
-    res.status(404).render("404", pug_data_generator_1["default"].get({
+    res.status(404).render("404", pug_data_generator_1.default.get({
         title: "404"
     }));
 });

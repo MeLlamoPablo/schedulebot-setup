@@ -2,7 +2,8 @@ export interface ExistingData {
 	discord?: DiscordData
 	settings?: SettingsData
 	steamBots?: SteamBot[],
-	heroku?: HerokuData
+	heroku?: HerokuData,
+	currentVersion?: string
 }
 
 interface DiscordData {
