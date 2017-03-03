@@ -13,11 +13,13 @@
     "compression": "^1.6.2",
     "discord.js": "hydrabolt/discord.js#05bba9b74abb4e8c08ef376d3cdf14ee1e0bdbe0",
     "express": "^4.14.0",
+    "heroku-client": "^3.0.2",
     "knex": "^0.12.6",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "pg": "^6.1.2",
-    "pug": "^2.0.0-beta11"
+    "pug": "^2.0.0-beta11",
+    "semver": "^5.3.0"
   },
   "devDependencies": {
     "apidoc": "^0.16.1",

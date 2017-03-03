@@ -18,10 +18,13 @@ export async function setApiKey(appName: string, key: string): Promise<EHerokuSe
 
 		const client = new Heroku({ token: key });
 
-		await client.patch(`/apps/${appName}/config-vars`, {
+		let app = await client.get(`/apps/${appName}/`);
+
+		await client.patch(`/apps/${app.id}/config-vars`, {
 			body: {
 				HEROKU_API_KEY: key,
-				HEROKU_APP_NAME: appName
+				HEROKU_APP_NAME: appName,
+				HEROKU_APP_ID: app.id
 			}
 		});
 

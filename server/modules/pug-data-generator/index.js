@@ -57,5 +57,5 @@ var PugDataGenerator = (function () {
     return PugDataGenerator;
 }());
 PugDataGenerator._instance = new PugDataGenerator();
-exports.__esModule = true;
-exports["default"] = PugDataGenerator;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = PugDataGenerator;

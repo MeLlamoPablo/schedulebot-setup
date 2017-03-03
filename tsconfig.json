@@ -1,7 +1,8 @@
 {
 	"compilerOptions": {
 		"strictNullChecks": true,
-		"removeComments": true
+		"removeComments": true,
+		"target": "es5"
 	},
 	"include": [
 		"./lib/**/*.ts"
