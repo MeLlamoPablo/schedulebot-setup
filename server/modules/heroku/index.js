@@ -43,22 +43,26 @@ var EHerokuSetApiKeyResult;
 })(EHerokuSetApiKeyResult = exports.EHerokuSetApiKeyResult || (exports.EHerokuSetApiKeyResult = {}));
 function setApiKey(appName, key) {
     return __awaiter(this, void 0, void 0, function () {
-        var client, e_1;
+        var client, app, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 3, , 4]);
                     client = new Heroku({ token: key });
-                    return [4 /*yield*/, client.patch("/apps/" + appName + "/config-vars", {
+                    return [4 /*yield*/, client.get("/apps/" + appName + "/")];
+                case 1:
+                    app = _a.sent();
+                    return [4 /*yield*/, client.patch("/apps/" + app.id + "/config-vars", {
                             body: {
                                 HEROKU_API_KEY: key,
-                                HEROKU_APP_NAME: appName
+                                HEROKU_APP_NAME: appName,
+                                HEROKU_APP_ID: app.id
                             }
                         })];
-                case 1:
+                case 2:
                     _a.sent();
                     return [2 /*return*/, EHerokuSetApiKeyResult.SUCCESS];
-                case 2:
+                case 3:
                     e_1 = _a.sent();
                     if (e_1.statusCode === 401) {
                         return [2 /*return*/, EHerokuSetApiKeyResult.WRONG_KEY];
@@ -69,8 +73,8 @@ function setApiKey(appName, key) {
                     else {
                         throw e_1;
                     }
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
