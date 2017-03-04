@@ -24,7 +24,8 @@ export async function setApiKey(appName: string, key: string): Promise<EHerokuSe
 			body: {
 				HEROKU_API_KEY: key,
 				HEROKU_APP_NAME: appName,
-				HEROKU_APP_ID: app.id
+				HEROKU_APP_ID: app.id,
+				NODE_MODULES_CACHE: false // So schedulebot-setup gets redownloaded on new release
 			}
 		});
 
