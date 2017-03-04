@@ -18,3 +18,15 @@ block body
 
 			div(class="section col s12 m12 l10")
 				block content
+
+	if existingData
+		span(id="existing-data" style="display: none;")!=existingData
+
+	div(id="new-version-modal" class="modal")
+		div(class="modal-content")
+			h4 New version available!
+			p: strong Version #[span(id="span-new-version")] is available for download!
+		div(class="modal-footer")
+			a(href="/update" class="modal-action modal-close waves-effect btn blue") Update
+			a(href="#" class="modal-action modal-close waves-effect btn red"
+				style="margin-right: 5px;") Close

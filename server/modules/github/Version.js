@@ -44,7 +44,7 @@ var Version = (function () {
     }
     Object.defineProperty(Version.prototype, "version", {
         get: function () {
-            return this._version;
+            return this._version.replace("v", "");
         },
         enumerable: true,
         configurable: true

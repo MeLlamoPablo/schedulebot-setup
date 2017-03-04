@@ -8,6 +8,7 @@ import {api} from "./api";
 import errorHandling from "./middleware/errorHandling";
 import PugData from "./modules/pug-data-generator";
 import {ExistingData} from "./structures/ExistingData";
+import {checkForUpdates} from "./modules/github/checkForUpdates";
 
 export let callback: any;
 export let existingData: ExistingData;
@@ -38,8 +39,14 @@ export function run(port: number = 3000, data: ExistingData = {}) {
 		callback = fulfill;
 		existingData = data;
 
-		app.listen(port, () => {
-			console.log("The Setup server is live on port " + port);
-		});
+		checkForUpdates().then(newVersion => {
+			if (newVersion !== null) {
+				existingData.newVersion = newVersion.version
+			}
+
+			app.listen(port, () => {
+				console.log("The Setup server is live on port " + port);
+			});
+		}).catch(reject);
 	});
 }

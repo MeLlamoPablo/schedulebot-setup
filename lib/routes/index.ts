@@ -37,7 +37,14 @@ router.get("/update", async (req, res, next) => {
 	} else {
 
 		let data = PugData.get({
-			title: "ScheduleBot Update"
+			title: "ScheduleBot Update",
+			menu: [
+				{
+					name: "Updating",
+					id: "updating"
+				}
+			],
+			newVersionAvailable: !!existingData.newVersion
 		});
 
 		if (Object.getOwnPropertyNames(existingData).length > 0) {

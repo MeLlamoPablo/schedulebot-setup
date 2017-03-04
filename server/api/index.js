@@ -54,7 +54,7 @@ router.post("/deploy", function (req, res, next) { return __awaiter(_this, void 
                 if (result.heroku && _1.existingData.heroku) {
                     result.heroku.key = _1.existingData.heroku.key;
                 }
-                _1.callback(result);
+                _1.callback({ action: "setup", data: result });
             }
             else {
                 res.status(400).send();
@@ -63,6 +63,13 @@ router.post("/deploy", function (req, res, next) { return __awaiter(_this, void 
         catch (e) {
             next(e);
         }
+        return [2 /*return*/];
+    });
+}); });
+router.post("/update", function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        _1.callback({ action: "update", data: _1.existingData });
+        res.status(200).send();
         return [2 /*return*/];
     });
 }); });

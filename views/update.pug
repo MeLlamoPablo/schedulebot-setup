@@ -1,0 +1,30 @@
+extends layouts/materialize
+include mixins/custom-section
+include mixins/loading-circle
+
+mixin updateSectionContent()
+
+	p You're about to update from version #[span(id="span-current-version")] to version #[span(id="span-new-version")]. You can check what's new in the #[a(href="https://github.com/MeLlamoPablo/schedulebot/releases" target="_blank") changelog].
+
+	p Updating the bot to the new version will shut down this Update site, and will tell Heroku to download the latest version. After the update is over, the bot will be turned on again.
+
+	p That means that this site will stop responding. In order to check the progress of the update, go to your #[a(href="https://dashboard.heroku.com/") Heroku Dashboard].
+
+	div(class="center")
+		a(id="button-update-bot" class="btn-large waves-effect waves-light red accent-4")
+		+loading-circle("loading-update-bot", "red", true)
+
+block content
+
+	ul(class="collection")
+
+		+custom-section("updating")
+			h1 Updating to the latest version
+
+			if newVersionAvailable
+
+				+updateSectionContent()
+
+			else
+
+				p You're already on the latest version!

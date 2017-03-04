@@ -34,69 +34,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
-var express = require("express");
-var pug_data_generator_1 = require("../modules/pug-data-generator");
-var _1 = require("../");
-var router = express.Router();
-exports.routes = router;
-router.get("/", function (req, res, next) {
-    if (isHerokuEnabledButKeyNotSet()) {
-        renderHerokuKeyDialog(res);
-    }
-    else {
-        var data = pug_data_generator_1.default.get({
-            title: "ScheduleBot Setup"
-        });
-        if (Object.getOwnPropertyNames(_1.existingData).length > 0) {
-            data.existingData = JSON.stringify(_1.existingData);
-        }
-        data.view = "main";
-        res.render("main", data);
-    }
-});
-router.get("/update", function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
-    var data;
-    return __generator(this, function (_a) {
-        if (isHerokuEnabledButKeyNotSet()) {
-            renderHerokuKeyDialog(res);
-        }
-        else {
-            data = pug_data_generator_1.default.get({
-                title: "ScheduleBot Update",
-                menu: [
-                    {
-                        name: "Updating",
-                        id: "updating"
+var Version_1 = require("./Version");
+function checkForUpdates() {
+    return __awaiter(this, void 0, void 0, function () {
+        var currentVersion, latestVersion;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    currentVersion = Version_1.Version.getCurrent();
+                    if (!(currentVersion !== null)) return [3 /*break*/, 2];
+                    return [4 /*yield*/, Version_1.Version.getLatest()];
+                case 1:
+                    latestVersion = _a.sent();
+                    switch (currentVersion.compareTo(latestVersion)) {
+                        case Version_1.EVersionCompareResult.EQUAL:
+                            return [2 /*return*/, null];
+                        case Version_1.EVersionCompareResult.LESS:
+                            return [2 /*return*/, latestVersion];
+                        default:
+                            throw new Error("This shouldn't happen!");
                     }
-                ],
-                newVersionAvailable: !!_1.existingData.newVersion
-            });
-            if (Object.getOwnPropertyNames(_1.existingData).length > 0) {
-                data.existingData = JSON.stringify(_1.existingData);
+                    return [3 /*break*/, 3];
+                case 2: return [2 /*return*/, null];
+                case 3: return [2 /*return*/];
             }
-            data.view = "update";
-            res.render("update", data);
-        }
-        return [2 /*return*/];
+        });
     });
-}); });
-function isHerokuEnabledButKeyNotSet() {
-    return !!(_1.existingData &&
-        _1.existingData.heroku &&
-        _1.existingData.heroku.enabled &&
-        !_1.existingData.heroku.key);
 }
-function renderHerokuKeyDialog(res) {
-    var data = pug_data_generator_1.default.get({
-        title: "Heroku API Key | ScheduleBot Setup",
-        menu: [
-            {
-                name: "Heroku API Key",
-                id: "heroku-api-key"
-            }
-        ],
-        view: "heroku"
-    });
-    res.render("heroku", data);
-}
+exports.checkForUpdates = checkForUpdates;

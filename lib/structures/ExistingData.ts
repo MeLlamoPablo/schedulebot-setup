@@ -3,7 +3,8 @@ export interface ExistingData {
 	settings?: SettingsData
 	steamBots?: SteamBot[],
 	heroku?: HerokuData,
-	currentVersion?: string
+	currentVersion?: string,
+	newVersion?: string
 }
 
 interface DiscordData {

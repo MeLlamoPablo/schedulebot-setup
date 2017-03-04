@@ -21,7 +21,7 @@ router.post("/deploy", async (req, res, next) => {
 				result.heroku.key = existingData.heroku.key;
 			}
 
-			callback(result);
+			callback({ action: "setup", data: result });
 		} else {
 			res.status(400).send();
 		}
@@ -29,6 +29,12 @@ router.post("/deploy", async (req, res, next) => {
 	} catch (e) {
 		next(e);
 	}
+});
+
+router.post("/update", async (req, res, next) => {
+	callback({ action: "update", data: existingData });
+
+	res.status(200).send();
 });
 
 router.post("/apikey", async (req, res, next) => {

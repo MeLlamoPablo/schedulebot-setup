@@ -7,6 +7,7 @@ var routes_1 = require("./routes");
 var api_1 = require("./api");
 var errorHandling_1 = require("./middleware/errorHandling");
 var pug_data_generator_1 = require("./modules/pug-data-generator");
+var checkForUpdates_1 = require("./modules/github/checkForUpdates");
 var app = express();
 app.set("views", path.join(__dirname, "..", "views"));
 app.set("view engine", "pug");
@@ -27,9 +28,14 @@ function run(port, data) {
     return new Promise(function (fulfill, reject) {
         exports.callback = fulfill;
         exports.existingData = data;
-        app.listen(port, function () {
-            console.log("The Setup server is live on port " + port);
-        });
+        checkForUpdates_1.checkForUpdates().then(function (newVersion) {
+            if (newVersion !== null) {
+                exports.existingData.newVersion = newVersion.version;
+            }
+            app.listen(port, function () {
+                console.log("The Setup server is live on port " + port);
+            });
+        }).catch(reject);
     });
 }
 exports.run = run;

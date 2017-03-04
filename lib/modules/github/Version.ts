@@ -9,7 +9,7 @@ export class Version {
 	private _version: string;
 
 	public get version(): string {
-		return this._version;
+		return this._version.replace("v", "");
 	}
 
 	private setVersion(version: string): void {
