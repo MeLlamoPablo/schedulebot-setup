@@ -32,6 +32,7 @@ interface SettingsData {
 	"quick-inhouse-command-name"?: string
 	"quick-inhouse-event-name"?: string
 	"game-generic-name"?: string
+	"default-server"?: string
 	"default-timezone"?: string
 	"time-format"?: string
 	"update-interval"?: number
