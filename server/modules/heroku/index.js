@@ -56,7 +56,8 @@ function setApiKey(appName, key) {
                             body: {
                                 HEROKU_API_KEY: key,
                                 HEROKU_APP_NAME: appName,
-                                HEROKU_APP_ID: app.id
+                                HEROKU_APP_ID: app.id,
+                                NODE_MODULES_CACHE: false
                             }
                         })];
                 case 2:
